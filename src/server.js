@@ -1,3 +1,4 @@
+// This file is deprecated for Vercel serverless deployment. All logic has been moved to /api routes.
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
