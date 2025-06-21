@@ -1,5 +1,6 @@
 // This file is deprecated for Vercel serverless deployment. All logic has been moved to /api routes.
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
@@ -18,6 +19,15 @@ const app = express();
 
 // Trust proxy for rate limiting behind load balancers
 app.set('trust proxy', 1);
+
+// CORS configuration
+const corsOptions = {
+  origin: true, // Allow any origin
+  credentials: true,
+  optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 const connectDB = async () => {
