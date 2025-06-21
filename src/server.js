@@ -1,6 +1,5 @@
 // This file is deprecated for Vercel serverless deployment. All logic has been moved to /api routes.
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import helmet from 'helmet';
@@ -37,16 +36,16 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Dev logging middleware
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'));
+// }
 
-// Security middleware with relaxed CORS settings for development
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" },
-  crossOriginOpenerPolicy: { policy: "unsafe-none" },
-  crossOriginEmbedderPolicy: false
-}));
+// Security middleware
+// app.use(helmet({
+//   crossOriginResourcePolicy: { policy: "cross-origin" },
+//   crossOriginOpenerPolicy: { policy: "unsafe-none" },
+//   crossOriginEmbedderPolicy: false
+// }));
 
 // Rate limiting - More lenient in development
 const limiter = rateLimit({
