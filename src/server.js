@@ -30,42 +30,6 @@ const connectDB = async () => {
   }
 };
 
-// CORS configuration - Must be first middleware
-const corsOptions = {
-  origin: function(origin, callback) {
-    const allowedOrigins = process.env.NODE_ENV === 'production'
-      ? [process.env.CLIENT_URL]
-      : ['http://localhost:3000', 'http://127.0.0.1:3000'];
-    
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Requested-With',
-    'Accept',
-    'Origin',
-    'Access-Control-Allow-Headers',
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Credentials'
-  ]
-};
-
-// Apply CORS before any other middleware
-app.use(cors(corsOptions));
-
-// Handle preflight requests
-app.options('*', cors(corsOptions));
-
 // Parse JSON bodies
 app.use(express.json());
 
