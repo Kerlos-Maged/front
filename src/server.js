@@ -16,6 +16,9 @@ dotenv.config({ path: './src/config/env.js' });
 // Create Express app
 const app = express();
 
+// Trust proxy for rate limiting behind load balancers
+app.set('trust proxy', 1);
+
 // Connect to MongoDB
 const connectDB = async () => {
   try {
@@ -73,14 +76,9 @@ app.get('/api/health', async (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Export app for serverless deployment
-export default app;
-
-// Connect to MongoDB when not in production (for local development)
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, async () => {
-    await connectDB();
-    console.log(`Server running on port ${PORT}`);
-  });
-} 
+// Connect to MongoDB and start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, async () => {
+  await connectDB();
+  console.log(`Server running on port ${PORT}`);
+}); 

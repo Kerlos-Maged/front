@@ -8,7 +8,6 @@
     "start": "node src/server.js",
     "dev": "cross-env ENABLE_DEV_FEATURES=true nodemon src/server.js",
     "build": "npm install",
-    "vercel-build": "npm install",
     "seed:admin": "node src/scripts/seedAdmin.js",
     "init-db": "node src/scripts/initDb.js",
     "init-questions": "node src/scripts/initQuestions.js"
@@ -17,7 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",

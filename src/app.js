@@ -1,4 +1,4 @@
-// This file is deprecated for Vercel serverless deployment. All logic has been moved to /api routes.
+// This file is deprecated. All logic has been moved to server.js.
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes');

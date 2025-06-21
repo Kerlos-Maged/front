@@ -1,7 +1,6 @@
 const rateLimit = require('express-rate-limit');
 
-// For Vercel serverless functions, we need to be more conservative with rate limits
-// since each function invocation is isolated
+// Rate limiting configuration for the application
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: process.env.NODE_ENV === 'development' ? 1000 : 50, // Higher limit for development
